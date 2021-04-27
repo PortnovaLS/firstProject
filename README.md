@@ -1,2 +1,2 @@
-# firstProjectFromMaven
-First Project from Maven
+# FirstProjectFromMaven
+
