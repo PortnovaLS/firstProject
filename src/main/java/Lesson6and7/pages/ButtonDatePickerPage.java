@@ -1,12 +1,9 @@
-package Lesson6.pages;
+package Lesson6and7.pages;
 
-import org.openqa.selenium.By;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.io.BufferedReader;
 
 public class ButtonDatePickerPage extends BasePage {
 
@@ -17,7 +14,7 @@ public class ButtonDatePickerPage extends BasePage {
     @FindBy(xpath = "//div[@class='DayPicker-choosenDate navbar-item-link']")
     public WebElement dayPickerItem;
 
-    @FindBy(xpath = "//div[@aria-label='сб 15 мая 2021 г.']")
+    @FindBy(xpath = "//div[@aria-label='пт 21 мая 2021 г.']")
     public WebElement chosenDate;
 
     @FindBy(xpath = "//button[@class='button']")
@@ -26,16 +23,19 @@ public class ButtonDatePickerPage extends BasePage {
     @FindBy(xpath = "//div[@id='react-date-picker']")
     public WebElement successChosenDate;
 
+    @Step("Нажать кнопку Выбор даты")
     public ButtonDatePickerPage clickDayPickerItem() {
         dayPickerItem.click();
         return this;
     }
 
+    @Step("Выбрать дату")
     public ButtonDatePickerPage clickChosenDate() {
         chosenDate.click();
         return this;
     }
 
+    @Step("Нажать кнопку Применить")
     public ButtonDatePickerPage clickButtonChosenDate() {
         buttonChosenDate.click();
         return this;

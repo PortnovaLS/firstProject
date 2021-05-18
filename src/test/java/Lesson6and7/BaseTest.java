@@ -1,19 +1,21 @@
-package Lesson6;
+package Lesson6and7;
 
 
-import Lesson6.pages.ButtonDatePickerPage;
-import Lesson6.pages.LogOutForKudaGoPage;
-import Lesson6.pages.LoginForKudaGoPage;
+import Lesson6and7.Listeners.CustomLogger;
+import Lesson6and7.pages.ButtonDatePickerPage;
+import Lesson6and7.pages.LogOutForKudaGoPage;
+import Lesson6and7.pages.LoginForKudaGoPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseTest {
-    WebDriver driver;
+    EventFiringWebDriver driver;
     WebDriverWait webDriverWait;
     LoginForKudaGoPage loginForKudaGoPage;
     LogOutForKudaGoPage logOutForKudaGoPage;
@@ -26,7 +28,8 @@ public class BaseTest {
 
     @BeforeEach
     public void setupBrowser() {
-        driver = new ChromeDriver();
+        driver = new EventFiringWebDriver(new ChromeDriver());
+        driver.register(new CustomLogger());
         webDriverWait = new WebDriverWait(driver, 15);
         loginForKudaGoPage = new LoginForKudaGoPage(driver);
         logOutForKudaGoPage = new LogOutForKudaGoPage(driver);
@@ -36,6 +39,7 @@ public class BaseTest {
 
     @AfterEach
     void tearDown(){
+        driver.manage().logs().get(LogType.BROWSER).getAll().forEach(System.out::println);
         driver.quit();
     }
 }
