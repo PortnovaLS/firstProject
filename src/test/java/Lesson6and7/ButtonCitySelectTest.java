@@ -1,14 +1,15 @@
-package Lesson6;
+package Lesson6and7;
 
-import Lesson6.pages.ButtonCitySelectPage;
-import Lesson6.pages.ButtonDatePickerPage;
+import Lesson6and7.pages.CitySelectPage;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static Lesson6.pages.ConfigurationForKudaGo.BASE_URL;
+import static Lesson6and7.pages.ConfigurationForKudaGo.BASE_URL;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+@Feature("Тестирование элемента Выбор города")
 public class ButtonCitySelectTest extends BaseTest{
 
     @BeforeEach
@@ -18,12 +19,10 @@ public class ButtonCitySelectTest extends BaseTest{
 
     @Test
     void CheckButtonCitySelect() {
-        new ButtonCitySelectPage(driver)
+        new CitySelectPage(driver)
                 .dropDownCitySelect()
                 .clickCitySelect()
-                .citySelect();
-        assertThat(new ButtonCitySelectPage(driver).successCitySelect.getText(), containsString("в Санкт-Петербурге"));
-
-
+                .citySelectStPetersburg();
+        assertThat(new CitySelectPage(driver).successCitySelect.getText(), containsString("в Санкт-Петербурге"));
     }
 }

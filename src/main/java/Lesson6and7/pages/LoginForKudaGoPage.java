@@ -1,5 +1,6 @@
-package Lesson6.pages;
+package Lesson6and7.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,23 +30,28 @@ public class LoginForKudaGoPage extends BasePage {
         super(driver);
     }
 
+    @Step("Нажать кнопку Вход для авторизации")
     public LoginForKudaGoPage submitUserZone(){
         buttonUserZone.click();
         return this;
     }
+    @Step("Ожидание страницы для авторизации")
     public LoginForKudaGoPage inputLoginLocator() {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(new LoginForKudaGoPage(driver)
                 .inputLoginLocator));
         return this;
     }
+    @Step("Заполнить поле логина")
     public LoginForKudaGoPage fillInputLogin (String login){
         inputLogin.sendKeys(login);
         return this;
     }
+    @Step("Заполнить поле пароля")
     public LoginForKudaGoPage fillInputPassword (String password){
         inputPassword.sendKeys(password);
         return this;
     }
+    @Step("Нажать кнопку войти")
     public void submitLogin(){
         buttonAuth.click();
     }

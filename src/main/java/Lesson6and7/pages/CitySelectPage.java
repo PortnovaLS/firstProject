@@ -1,13 +1,14 @@
-package Lesson6.pages;
+package Lesson6and7.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-public class ButtonCitySelectPage extends BasePage{
+public class CitySelectPage extends BasePage{
 
-    public ButtonCitySelectPage(WebDriver driver) {
+    public CitySelectPage(WebDriver driver) {
         super(driver);
     }
 
@@ -20,17 +21,20 @@ public class ButtonCitySelectPage extends BasePage{
     @FindBy(xpath = "//div[@class='location-switcher']/span")
     public WebElement successCitySelect;
 
-    public ButtonCitySelectPage dropDownCitySelect(){
+    @Step("Выпадающее меню для выбора города")
+    public CitySelectPage dropDownCitySelect(){
         Actions actions = new Actions(driver);
         actions.moveToElement(iconCitySelect).perform();
         return this;
     }
-    public ButtonCitySelectPage clickCitySelect(){
+    @Step("Нажать кнопку для выбора города")
+    public CitySelectPage clickCitySelect(){
         iconCitySelect.click();
         return this;
     }
 
-    public void citySelect(){
+    @Step("Выбрать город Санкт-Петербург")
+    public void citySelectStPetersburg(){
         citySelect.click();
     }
 }
